@@ -23,8 +23,11 @@ function login(event) {
     console.log('email, pass', email.value, pass.value);
     userService.getUserByEmail(email.value).then(user => {
         if (user && user.password === pass.value) {
+            // Try using an absolute path from the root of your site instead:
+            //when upload to github pages
+            //etc : window.location.href = "/site/index.html"
             storageService.saveToStorage('user', user)
-            window.location.href = "../site/index.html"
+            window.location.href = "/site/index.html"
         } else {
             console.log('user not found');
         }
