@@ -1,7 +1,7 @@
 import { storageService } from "../services/storage-service.js";
 
 document.querySelector('.logout').addEventListener('click', () => {
-    window.location.href = "/index.html"
+    window.location.href = "../index.html"
 })
 
 window.onload = () => {
