@@ -50,7 +50,7 @@ async function signup(event) {
         // return;
         const errorMessage = document.createElement('p');
         errorMessage.className = 'error-message';
-        errorMessage.textContent = 'Name should be 5 to 10 English characters.';
+        errorMessage.textContent = 'Name 5-10 letters (at least one capital letter)';
         name.parentElement.insertBefore(errorMessage, name);
         isNameValid = false
     }
@@ -75,7 +75,7 @@ async function signup(event) {
         // return;
         const errorMessage = document.createElement('p');
         errorMessage.className = 'error-message';
-        errorMessage.textContent = 'Password should be 4 to 8 English letters/nums';
+        errorMessage.textContent = 'Password 4-8 characters (letters and digits)';
         pass.parentElement.insertBefore(errorMessage, pass);
         isPassValid = false
     }
