@@ -87,7 +87,7 @@ async function signup(event) {
         // return;
         const errorMessage = document.createElement('p');
         errorMessage.className = 'error-message';
-        errorMessage.textContent = 'Password 4-8 characters (letters and digits)';
+        errorMessage.textContent = 'Password 4-9 characters (letters and digits)';
         if (pass.value === '') errorMessage.textContent = 'This field is required'
 
         pass.parentElement.insertAdjacentElement('beforeend', errorMessage);
