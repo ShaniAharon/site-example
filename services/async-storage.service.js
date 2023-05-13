@@ -7,9 +7,9 @@ export const storageService = {
     getByEmail
 }
 
-function query(entityType, delay = 500) {
+function query(entityType, delay = 1) {
     var entities = JSON.parse(localStorage.getItem(entityType)) || []
-    return new Promise(resolve => setTimeout(() => resolve(entities), delay))
+    return Promise.resolve(entities)//new Promise(resolve => setTimeout(() => resolve(entities), delay))
 }
 
 function get(entityType, entityId) {
