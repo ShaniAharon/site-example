@@ -35,11 +35,20 @@ function login(event) {
     })
 }
 
-function signup(event) {
+async function signup(event) {
     console.log('event', event);
     event.preventDefault();
     const { target } = event
     const [name, email, pass] = target
+    let testUser
+    try {
+        testUser = await userService.getUserByEmail(email.value)
+    } catch (err) {
+        console.log('err', err);
+    }
+    if (testUser) {
+        return console.log('email already in use')
+    }
     console.log('name, email, pass', name.value, email.value, pass.value);
     const user = {
         name: name.value,
