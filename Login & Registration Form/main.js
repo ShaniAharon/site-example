@@ -94,6 +94,7 @@ async function signup(event) {
         isPassValid = false
     }
     if (!isSignupCheck()) {
+        console.log('empty checkbox');
         isCheckValid = false
     }
     if (!isEmailValid || !isNameValid || !isPassValid || !isCheckValid) {
