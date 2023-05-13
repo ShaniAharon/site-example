@@ -45,6 +45,7 @@ async function signup(event) {
     let isNameValid = true
     let isPassValid = true
     let isEmailValid = true
+    let isCheckValid = true
     if (!isValidName(name.value)) {
         // console.error('Invalid name. Name should be 5 to 10 English characters.');
         // return;
@@ -92,7 +93,10 @@ async function signup(event) {
         pass.parentElement.insertAdjacentElement('beforeend', errorMessage);
         isPassValid = false
     }
-    if (!isEmailValid || !isNameValid || !isPassValid) {
+    if (!isSignupCheck()) {
+        isCheckValid = false
+    }
+    if (!isEmailValid || !isNameValid || !isPassValid || !isCheckValid) {
         return
     }
 
@@ -121,4 +125,9 @@ function isValidName(name) {
 function isValidPassword(password) {
     const regex = /^[A-Za-z0-9]{4,8}$/;
     return regex.test(password);
+}
+
+function isSignupCheck() {
+    const elCheck = document.querySelector('#signupCheck')
+    return elCheck.checked
 }
