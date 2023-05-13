@@ -76,7 +76,7 @@ async function signup(event) {
     if (email.value === '') {
         const errorMessage = document.createElement('p');
         errorMessage.className = 'error-message';
-        errorMessage.textContent = 'This field is required'
+        errorMessage.textContent = 'This field is requierd'
         email.parentElement.insertAdjacentElement('beforeend', errorMessage);
         isEmailValid = false
     }
