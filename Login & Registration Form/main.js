@@ -40,6 +40,18 @@ async function signup(event) {
     event.preventDefault();
     const { target } = event
     const [name, email, pass] = target
+    // Remove existing error messages
+    document.querySelectorAll('.error-message').forEach(el => el.remove());
+    if (!isValidName(name.value)) {
+        // console.error('Invalid name. Name should be 5 to 10 English characters.');
+        // return;
+        const errorMessage = document.createElement('p');
+        errorMessage.className = 'error-message';
+        errorMessage.textContent = 'Name should be 5 to 10 English characters.';
+        name.parentElement.insertBefore(errorMessage, name);
+        return;
+    }
+
     let testUser
     try {
         testUser = await userService.getUserByEmail(email.value)
@@ -47,8 +59,23 @@ async function signup(event) {
         console.log('err', err);
     }
     if (testUser) {
-        return console.log('email already in use')
+        const errorMessage = document.createElement('p');
+        errorMessage.className = 'error-message';
+        errorMessage.textContent = 'Email already in use.';
+        email.parentElement.insertBefore(errorMessage, email);
+        return //console.error('email already in use')
     }
+
+    if (!isValidPassword(pass.value)) {
+        // console.error('Invalid password. Password should be 4 to 8 characters with only English letters and numbers.');
+        // return;
+        const errorMessage = document.createElement('p');
+        errorMessage.className = 'error-message';
+        errorMessage.textContent = 'Password should be 4 to 8 English letters/nums';
+        pass.parentElement.insertBefore(errorMessage, pass);
+        return;
+    }
+
     console.log('name, email, pass', name.value, email.value, pass.value);
     const user = {
         name: name.value,
@@ -62,4 +89,16 @@ async function signup(event) {
             console.log('couldent save user');
         }
     })
+}
+
+
+function isValidName(name) {
+    const regex = /^[A-Za-z]{5,10}$/;
+    return regex.test(name);
+}
+
+
+function isValidPassword(password) {
+    const regex = /^[A-Za-z0-9]{4,8}$/;
+    return regex.test(password);
 }

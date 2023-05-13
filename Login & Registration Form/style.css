@@ -126,3 +126,8 @@ form input[type='submit'] {
 .btn-signup:hover {
   background-color: #f5f3f3d6;
 }
+
+p {
+  font-size: small;
+  color: #f5efc1;
+}
