@@ -36,8 +36,8 @@ function login(event) {
 }
 
 async function signup(event) {
-    console.log('event', event);
     event.preventDefault();
+    console.log('example');
     const { target } = event
     const [name, email, pass] = target
     // Remove existing error messages
@@ -51,6 +51,7 @@ async function signup(event) {
         const errorMessage = document.createElement('p');
         errorMessage.className = 'error-message';
         errorMessage.textContent = 'Name 5-10 letters (at least one capital letter)';
+        if (name.value === '') errorMessage.textContent = 'This field is required'
         // name.parentElement.insertBefore(errorMessage, name);
         name.parentElement.parentElement.querySelector('.input-wrapper').insertAdjacentElement('beforeend', errorMessage);
         isNameValid = false
@@ -66,9 +67,17 @@ async function signup(event) {
         const errorMessage = document.createElement('p');
         errorMessage.className = 'error-message';
         errorMessage.textContent = 'Email already in use.';
+        if (email.value === '') errorMessage.textContent = 'This field is required'
         // email.parentElement.insertBefore(errorMessage, email);
         email.parentElement.insertAdjacentElement('beforeend', errorMessage);
         // return //console.error('email already in use')
+        isEmailValid = false
+    }
+    if (email.value === '') {
+        const errorMessage = document.createElement('p');
+        errorMessage.className = 'error-message';
+        errorMessage.textContent = 'This field is required'
+        email.parentElement.insertAdjacentElement('beforeend', errorMessage);
         isEmailValid = false
     }
 
@@ -78,6 +87,8 @@ async function signup(event) {
         const errorMessage = document.createElement('p');
         errorMessage.className = 'error-message';
         errorMessage.textContent = 'Password 4-8 characters (letters and digits)';
+        if (pass.value === '') errorMessage.textContent = 'This field is required'
+
         pass.parentElement.insertAdjacentElement('beforeend', errorMessage);
         isPassValid = false
     }
