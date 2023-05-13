@@ -42,6 +42,9 @@ async function signup(event) {
     const [name, email, pass] = target
     // Remove existing error messages
     document.querySelectorAll('.error-message').forEach(el => el.remove());
+    let isNameValid = true
+    let isPassValid = true
+    let isEmailValid = true
     if (!isValidName(name.value)) {
         // console.error('Invalid name. Name should be 5 to 10 English characters.');
         // return;
@@ -49,7 +52,7 @@ async function signup(event) {
         errorMessage.className = 'error-message';
         errorMessage.textContent = 'Name should be 5 to 10 English characters.';
         name.parentElement.insertBefore(errorMessage, name);
-        return;
+        isNameValid = false
     }
 
     let testUser
@@ -63,7 +66,8 @@ async function signup(event) {
         errorMessage.className = 'error-message';
         errorMessage.textContent = 'Email already in use.';
         email.parentElement.insertBefore(errorMessage, email);
-        return //console.error('email already in use')
+        // return //console.error('email already in use')
+        isEmailValid = false
     }
 
     if (!isValidPassword(pass.value)) {
@@ -73,7 +77,10 @@ async function signup(event) {
         errorMessage.className = 'error-message';
         errorMessage.textContent = 'Password should be 4 to 8 English letters/nums';
         pass.parentElement.insertBefore(errorMessage, pass);
-        return;
+        isPassValid = false
+    }
+    if (!isEmailValid || !isNameValid || !isPassValid) {
+        return
     }
 
     console.log('name, email, pass', name.value, email.value, pass.value);
