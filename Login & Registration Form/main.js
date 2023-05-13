@@ -51,7 +51,8 @@ async function signup(event) {
         const errorMessage = document.createElement('p');
         errorMessage.className = 'error-message';
         errorMessage.textContent = 'Name 5-10 letters (at least one capital letter)';
-        name.parentElement.insertBefore(errorMessage, name);
+        // name.parentElement.insertBefore(errorMessage, name);
+        name.parentElement.parentElement.querySelector('.input-wrapper').insertAdjacentElement('beforeend', errorMessage);
         isNameValid = false
     }
 
@@ -65,7 +66,8 @@ async function signup(event) {
         const errorMessage = document.createElement('p');
         errorMessage.className = 'error-message';
         errorMessage.textContent = 'Email already in use.';
-        email.parentElement.insertBefore(errorMessage, email);
+        // email.parentElement.insertBefore(errorMessage, email);
+        email.parentElement.insertAdjacentElement('beforeend', errorMessage);
         // return //console.error('email already in use')
         isEmailValid = false
     }
@@ -76,7 +78,7 @@ async function signup(event) {
         const errorMessage = document.createElement('p');
         errorMessage.className = 'error-message';
         errorMessage.textContent = 'Password 4-8 characters (letters and digits)';
-        pass.parentElement.insertBefore(errorMessage, pass);
+        pass.parentElement.insertAdjacentElement('beforeend', errorMessage);
         isPassValid = false
     }
     if (!isEmailValid || !isNameValid || !isPassValid) {
